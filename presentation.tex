@@ -1,0 +1,290 @@
+%Copyright (c) 2014 Gabi Sarkis <gfsarkis@gmail.com>
+% 
+%Permission is hereby granted, free of charge, to any person obtaining a copy
+%of this software and associated documentation files (the "Software"), to deal
+%in the Software without restriction, including without limitation the rights
+%to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+%copies of the Software, and to permit persons to whom the Software is
+%furnished to do so, subject to the following conditions:
+% 
+%The above copyright notice and this permission notice shall be included in
+%all copies or substantial portions of the Software.
+% 
+%THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+%IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+%FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+%AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+%LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+%OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+%THE SOFTWARE.
+
+
+\documentclass[table]{beamer}
+\usepackage{tikz}
+\usepackage{verbatim}
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+\usepackage[style=ieee,
+% citestyle=numeric, %define style for citations
+    % bibstyle=abbrv, %define style for bibliography
+    % maxbibnames=10, %maximum number of authors displayed in bibliography
+    % minbibnames=1, %minimum number of authors displayed in bibliography
+    % maxcitenames=3, %maximum number of authors displayed in citations before using et al.
+    % minnames=1, %maximum number of authors displayed in citations before using et al.
+    datezeros=false, % do not print dates with leading zeros
+    date=long, %use long formats for dates
+    isbn=false,% show no ISBNs in bibliography (applies only if not a mandatory field)
+    url=false,% show no urls in bibliography (applies only if not a mandatory field)
+    doi=false, % show no dois in bibliography (applies only if not a mandatory field)
+    eprint=false, %show no eprint-field in bibliography (applies only if not a mandatory field)
+    backend=bibtex %use biber as the backend; backend=bibtex is less powerful, but easier to install
+    ]{biblatex}
+
+\usepackage[utf8]{inputenc}
+\usepackage{palatino}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage[labelfont=bf]{caption}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{setspace}
+\captionsetup[table]{font = {stretch=1.35}}
+\captionsetup[figure]{font = {stretch=1.35}}
+\usepackage[margin=1in]{geometry}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage[table,xcdraw]{xcolor} %colors in table
+\usepackage{amsmath,amssymb}
+\usepackage{mathtools}
+\usepackage{bbm}
+\usepackage{afterpage}
+
+\usetikzlibrary{arrows,shapes,backgrounds}
+
+\mode<presentation>{
+
+\definecolor{bluecern}{HTML}{0053A1}
+
+\usetheme{Frankfurt}
+
+\setbeamercolor{structure}{fg=titlecolors}
+\setbeamercolor{subsection in head/foot}{bg=titlecolor}
+}
+
+% \setbeamercolor{title}{bg=white, fg=red}
+% \setbeamercolor{frametitle}{bg=white, fg=red}
+% \setbeamercolor{section in head/foot}{fg=black, bg=white}
+\colorlet{LightSpringGreen}{white!70!black}
+\setbeamercolor{section in head/foot}{fg=white, bg=LightSpringGreen}
+
+% set bullet color on progress bar
+\colorlet{bullet}{green}
+\defbeamertemplate*{mini frame}{Frankfurt}
+{%
+  \begin{pgfpicture}{0pt}{0pt}{0.1cm}{0.1cm}
+%    \pgfsetcolor{bullet}% draw and fill in red
+    \pgfsetfillcolor{bullet}% only fill in red
+    \pgfpathcircle{\pgfpoint{0.05cm}{0.05cm}}{0.05cm}
+    \pgfusepath{fill,stroke}
+  \end{pgfpicture}%
+}
+[action]
+{ \setbeamersize{mini frame size=.14cm,mini frame offset=.03cm} }
+
+
+\usetheme{mcgill}
+
+\setcounter{tocdepth}{1}
+
+\title[Haptic Tacton Similarity]{Haptic Tacton Perceptual Similarity} %what is inside the [] appears at the bottom of every page
+\subtitle[]{(cooler title still TBD)}
+\author[Marc Demers]{Marc~Demers}
+\institute[McGill University]
+{
+  \inst{}%
+  McGill University, Montr\'{e}al, QC.
+}
+
+\date[]{\today}
+
+%kl-div
+\DeclarePairedDelimiterX{\infdivx}[2]{(}{)}{%
+  #1\;\delimsize\|\;#2%
+}
+\newcommand{\infdiv}{D_{KL}\infdivx}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+
+\newcommand\given[1][]{\:#1\vert\:}
+
+\bibliography{references,zotero-references}
+
+\begin{document}
+% For every picture that defines or uses external nodes, you'll have to
+% apply the 'remember picture' style. To avoid some typing, we'll apply
+% the style to all pictures.
+\tikzstyle{every picture}+=[remember picture]
+\tikzstyle{na} = [baseline=-.5ex]
+
+\frame[plain]{
+  \titlepage
+}
+
+\section{Intro} %defines the top level presentation title
+
+\begin{frame}{Objective}
+
+  \begin{itemize}
+  \item Present project to newcomers
+  \item Present results
+  \item Ideas for data analysis
+  \item Kickstart writing paper (find appropriate venue)
+  
+  \end{itemize}
+
+\end{frame}
+
+%%%%
+
+\input{frames/quick_intro}
+
+\input{frames/motivation_challenges}
+
+\input{frames/research_question}
+
+\input{frames/contributions}
+
+
+
+
+
+
+\section{Approach}
+
+
+\input{frames/theoretical_approach_similarity}
+
+\input{frames/pyramids}
+
+\input{frames/gathering_ratings}
+
+
+
+\input{frames/pcm_1}
+\input{frames/pcm_2}
+% \input{frames/pcm_3}
+
+
+\input{frames/logistic_model}
+
+\input{frames/maximal_info_gain}
+
+\input{frames/graph_repr}
+
+\input{frames/procedure}
+
+
+
+
+
+\section{Experimental Results}
+
+
+\input{frames/results/attention_tests}
+\input{frames/results/active_sampling}
+
+%% Results- Global
+
+\input{frames/results/community_detection}
+
+\input{frames/results/characterizing_uncertainty}
+
+
+
+%% Results- Personas
+
+\input{frames/results/persona_linkage_tree}
+
+\input{frames/results/demographic_info}
+
+\input{frames/results/triplet_loss}
+
+
+
+
+
+
+
+
+\begin{frame}{Learning Performance}
+
+\begin{table}[htb]
+\centering
+
+\begin{tabular}[t]{llccc}
+\toprule
+ Experiment & & $R^2$ & RMSE & MAE  \\
+ \midrule
+ \multirow{2}{*}{All Tactons} & Lin. Reg.    & $0.081 \pm 0.042$ & $0.249 \pm 0.010$ & $0.246 \pm 0.005$ \\
+ & Grad. Boost.                              & $0.152 \pm 0.012$ & $0.129 \pm 0.018$ & $0.120 \pm 0.020$ \\
+ \midrule
+ \multirow{2}{*}{Avg. by group} & Lin. Reg.  & $0.123 \pm 0.027$ & $0.248 \pm 0.021$ & $0.221 \pm 0.023$ \\
+                            & Grad. Boost.   & $0.194 \pm 0.125$ & $0.107 \pm 0.031$ & $0.092 \pm 0.030$ \\
+ \bottomrule
+\end{tabular}
+
+\label{tab:prediction_results}
+\end{table}%
+    
+\end{frame}
+
+
+\section{Conclusion}
+
+\begin{frame}{Takeaways}
+
+\begin{itemize}
+    
+    \item Provided researchers are cautious about the noise, AMT shows promise in haptic evaluation tasks
+    \item The bottom-up approach proves useful in characterizing the Individual Differences on perception, something the community desperately needs
+    \item It seems like there exists clusters of vibrations that users feel are similar together. Three clusters seems low but given the limited tacton space that was explored it is possible
+    \item We can use machine learning to learn from similarity ratings and \textit{extrapolate} from them, which could potentially reduce the human cost of exploring the haptic tacton space
+    \item Demographic info. did not seem to explain the personas
+\end{itemize}
+\end{frame}
+
+
+
+
+
+\begin{frame}{TODO}
+
+\begin{itemize}
+    \item Haptics are abstract, build UI to ``feel'' the similar tactons
+    \item Further analysis ideas/corrections/thoughts? 
+    \item Potential reviewer for thesis
+    \item Venue ideas for publishing results
+\end{itemize}
+    
+\end{frame}
+
+
+
+
+
+% \begin{frame}[t,allowframebreaks]
+%         \frametitle{References}
+% %        \bibliographystyle{amsalpha}
+% \printbibliography[heading=none]
+% \end{frame}
+
+
+\frame[plain]{
+
+  \centering
+  \color{titlecolor}{\Large Thank you!}
+
+}
+
+
+
+\end{document}

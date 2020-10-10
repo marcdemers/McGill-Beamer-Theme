@@ -1,0 +1,27 @@
+
+
+
+\begin{frame}{Logistic Model}
+
+\begin{itemize}
+    \item Logistic regression
+    \begin{equation}
+    \label{eqn:glm}
+    P(A_i \thicksim A_j) = \hat{s}_{ij} = \frac{1}{1+e^{-(\alpha_{ij} - \alpha_{ji})}} = \frac{e^{{\alpha}_{ij}}}{e^{{\alpha}_{ij}} + e^{{\alpha}_{ji}}}, \, i<j
+\end{equation}
+    
+    \item Variance
+    \begin{equation}
+\label{eqn:variance}
+     \hat{\sigma}_{ij}^2 = \hat{s}_{ij} (1-\hat{s}_{ij}) = \frac{\alpha_{ij} \alpha_{ji}}{(\alpha_{ij} + \alpha_{ji})^2}
+\end{equation}
+
+    \item Maximum likelihood estimator of similarity pairs
+    \begin{equation}
+\label{eqn:normal_distr}
+    \zeta_{ij} \sim \mathcal{N}(\hat{s}_{ij}, \hat{\sigma}_{ij})
+\end{equation}
+
+\end{itemize}
+    
+\end{frame}
